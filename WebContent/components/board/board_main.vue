@@ -13,116 +13,25 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td class="text-center d-none d-md-table-cell">10</td>
-                        <td>글 제목 입니다</td>
-                        <td class="text-center d-none d-md-table-cell">홍길동</td>
-                        <td class="text-center d-none d-md-table-cell">2018-12-12</td>
-
-                    </tr>
-                    <tr>
-                        <td class="text-center d-none d-md-table-cell">10</td>
-                        <td>글 제목 입니다</td>
-                        <td class="text-center d-none d-md-table-cell">홍길동</td>
-                        <td class="text-center d-none d-md-table-cell">2018-12-12</td>
-
-                    </tr>
-                    <tr>
-                        <td class="text-center d-none d-md-table-cell">10</td>
-                        <td>글 제목 입니다</td>
-                        <td class="text-center d-none d-md-table-cell">홍길동</td>
-                        <td class="text-center d-none d-md-table-cell">2018-12-12</td>
-
-                    </tr>
-                    <tr>
-                        <td class="text-center d-none d-md-table-cell">10</td>
-                        <td>글 제목 입니다</td>
-                        <td class="text-center d-none d-md-table-cell">홍길동</td>
-                        <td class="text-center d-none d-md-table-cell">2018-12-12</td>
-
-                    </tr>
-                    <tr>
-                        <td class="text-center d-none d-md-table-cell">10</td>
-                        <td>글 제목 입니다</td>
-                        <td class="text-center d-none d-md-table-cell">홍길동</td>
-                        <td class="text-center d-none d-md-table-cell">2018-12-12</td>
-
-                    </tr>
-                    <tr>
-                        <td class="text-center d-none d-md-table-cell">10</td>
-                        <td>글 제목 입니다</td>
-                        <td class="text-center d-none d-md-table-cell">홍길동</td>
-                        <td class="text-center d-none d-md-table-cell">2018-12-12</td>
-
-                    </tr>
-                    <tr>
-                        <td class="text-center d-none d-md-table-cell">10</td>
-                        <td>글 제목 입니다</td>
-                        <td class="text-center d-none d-md-table-cell">홍길동</td>
-                        <td class="text-center d-none d-md-table-cell">2018-12-12</td>
-
-                    </tr>
-                    <tr>
-                        <td class="text-center d-none d-md-table-cell">10</td>
-                        <td>글 제목 입니다</td>
-                        <td class="text-center d-none d-md-table-cell">홍길동</td>
-                        <td class="text-center d-none d-md-table-cell">2018-12-12</td>
-
-                    </tr>
-                    <tr>
-                        <td class="text-center d-none d-md-table-cell">10</td>
-                        <td>글 제목 입니다</td>
-                        <td class="text-center d-none d-md-table-cell">홍길동</td>
-                        <td class="text-center d-none d-md-table-cell">2018-12-12</td>
-
-                    </tr>
-                    <tr>
-                        <td class="text-center d-none d-md-table-cell">10</td>
-                        <td>글 제목 입니다</td>
-                        <td class="text-center d-none d-md-table-cell">홍길동</td>
-                        <td class="text-center d-none d-md-table-cell">2018-12-12</td>
-
-                    </tr>
+                        <tr v-for='a1 in temp_list' @click='go_board_read'>
+                            <td class="text-center d-none d-md-table-cell">{{a1}}</td>
+                            <td>글 제목 입니다</td>
+                            <td class="text-center d-none d-md-table-cell">홍길동</td>
+                            <td class="text-center d-none d-md-table-cell">2018-12-12</td>
+                        </tr>
                     </tbody>
                 </table>
 
                 <div class="d-none d-md-block">
                     <ul class="pagination justify-content-center">
                         <li class="page-item">
-                            <a href="#" class="page-link">이전</a>
+                            <router-link to="/board_main" class="page-link">이전</router-link>
+                        </li>
+                        <li class="page-item" v-for='a1 in temp_list'>
+                            <router-link to="/board_main" class="page-link">{{a1}}</router-link>
                         </li>
                         <li class="page-item">
-                            <a href="#" class="page-link">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">2</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">5</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">6</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">7</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">8</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">9</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">10</a>
-                        </li>
-                        <li class="page-item">
-                            <a href="#" class="page-link">다음</a>
+                            <router-link to="/board_main" class="page-link">다음</router-link>
                         </li>
                     </ul>
                 </div>
@@ -130,19 +39,45 @@
                 <div class="d-block d-md-none">
                     <ul class="pagination justify-content-center">
                         <li class="page-item">
-                            <a href="#" class="page-link">이전</a>
+                            <router-link to="/board_main" class="page-link">이전</router-link>
                         </li>
                         <li class="page-item">
-                            <a href="#" class="page-link">다음</a>
+                            <router-link to="/board_main" class="page-link">다음</router-link>
                         </li>
                     </ul>
                 </div>
 
                 <div class="text-right">
-                    <a href="board_write.html" class="btn btn-primary">글쓰기</a>
+                    <router-link to="/board_write" class="btn btn-primary">글쓰기</router-link>
                 </div>
 
             </div>
         </div>
     </div>
 </template>
+<style>
+    #board_list > tbody > tr {
+        cursor: pointer;
+    }
+</style>
+<script>
+    module.exports = {
+        data : function(){
+            return {
+                temp_list : [1,2,3,4,5,6,7,8,9,10]
+            }
+        },
+        methods : {
+            go_board_read : function(){
+                this.$router.push('/board_read')
+            }
+        }
+    }
+
+    // $(function(){
+    //
+    //     $("#board_list > tbody > tr").click(function(){
+    //         location.href = "board_read.html";
+    //     })
+    // })
+</script>

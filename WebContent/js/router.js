@@ -19,6 +19,40 @@ var router = new VueRouter({
         {
             path : '/modify_user',
             component : httpVueLoader('components/user/modify_user.vue')
+        },
+        {
+            path : '/board_read',
+            component : httpVueLoader('components/board/board_read.vue')
+        },
+        {
+            path : '/board_modify',
+            component: httpVueLoader('components/board/board_modify.vue')
+        },
+        {
+            path : '/board_delete',
+            beforeEnter(to, from, next){
+                alert('삭제되었습니다')
+                next('/board_main')
+            }
+
+        },
+        {
+            path : '/board_write',
+            component : httpVueLoader('components/board/board_write.vue')
+        },
+        {
+            path : '/logout',
+            beforeEnter(to, from, next){
+                alert('로그아웃 되었습니다')
+                next('/')
+            }
         }
-    ]
+    ],
+    scrollBehavior(to, from, savedPosition){
+        return{
+            x : 0,
+            y : 0
+        }
+    }
+
 })

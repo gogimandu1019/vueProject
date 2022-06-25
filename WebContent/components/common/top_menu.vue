@@ -31,7 +31,7 @@
                     <router-link to="/modify_user" class="nav-link">정보수정</router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link to="/" class="nav-link">로그아웃</router-link>
+                    <router-link to="/logout" class="nav-link">로그아웃</router-link>
                 </li>
             </ul>
         </div>
