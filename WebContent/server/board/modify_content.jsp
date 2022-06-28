@@ -26,55 +26,54 @@
 	// 업로드 처리
 	MultipartRequest mr = new MultipartRequest(request, path, maxSize, "UTF-8", policy);
 	
-	String str1 = mr.getParameter("board_writer_idx");
-	int board_writer_idx = Integer.parseInt(str1);
+	String str1 = mr.getParameter("content_idx");
+	int content_idx = Integer.parseInt(str1);
 	
-	String str2 = mr.getParameter("content_board_idx");
-	int content_board_idx = Integer.parseInt(str2);
+	String content_subject = mr.getParameter("content_subject");
+	String content_text = mr.getParameter("content_text");
+	String content_file = mr.getFilesystemName("content_file");
 	
-	String board_subject = mr.getParameter("board_subject");
-	String board_content = mr.getParameter("board_content");
-	String board_file = mr.getFilesystemName("board_file");
+	String sql = "update content_table set "
+			+ "content_subject = ?, content_text = ? ";
 	
-	String sql = "insert into content_table (content_idx, content_subject, content_text, content_file, "
-			+ "content_writer_idx, content_board_idx, content_date) "
-			+ "values (content_seq.nextval, ?, ?, ?, ?, ?, sysdate)";
+	if(content_file != null){
+		sql += ", content_file = ?";
+	}
+	
+	sql += " where content_idx = ?";
 	
 	PreparedStatement pstmt = db.prepareStatement(sql);
-	pstmt.setString(1, board_subject);
-	pstmt.setString(2, board_content);
-	pstmt.setString(3, board_file);
-	pstmt.setInt(4, board_writer_idx);
-	pstmt.setInt(5, content_board_idx);
+	pstmt.setString(1, content_subject);
+	pstmt.setString(2, content_text);
+	
+	if(content_file != null){
+		pstmt.setString(3, content_file);
+		pstmt.setInt(4, content_idx);
+	} else {
+		pstmt.setInt(3, content_idx);
+	}
 	
 	pstmt.execute();
-	
-	//새롭게 추가된 글의 번호를 파악한다
-	String sql2 = "select content_seq.currval as content_idx from dual";
-	PreparedStatement pstmt2 = db.prepareStatement(sql2);
-	
-	ResultSet rs2 = pstmt2.executeQuery();
-	rs2.next();
-	
-	int content_idx = rs2.getInt("content_idx");	
 	
 	db.close();
 %>
 {
-	"result" : true,
-	"content_idx" : <%= content_idx %>
+	"result" : true
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	

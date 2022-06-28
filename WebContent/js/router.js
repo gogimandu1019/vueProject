@@ -14,22 +14,29 @@ var router = new VueRouter({
 			component : httpVueLoader('components/main/main.vue')
 		},
 		{
-			path : '/board_main/:board_idx',
+			path : '/board_main/:board_idx/:page',
 			component : httpVueLoader('components/board/board_main.vue')
 		},
 		{
-			path : '/board_read',
+			path : '/board_read/:board_idx/:page/:content_idx',
 			component : httpVueLoader('components/board/board_read.vue')
 		},
 		{
-			path : '/board_modify',
+			path : '/board_modify/:board_idx/:page/:content_idx',
 			component : httpVueLoader('components/board/board_modify.vue')
 		},
 		{
-			path : '/board_delete',
+			path : '/board_delete/:board_idx/:page/:content_idx',
 			beforeEnter(to, from, next){
-				alert('삭제되었습니다')
-				next('/board_main')
+				var params = new URLSearchParams()
+				params.append('content_idx', to.params.content_idx)
+				
+				axios.post('server/board/delete_content.jsp', params).then((response)=>{
+					alert('삭제되었습니다')
+					next('/board_main/' + to.params.board_idx + '/' + to.params.page) 
+				})
+				
+				
 			}
 		},
 		{
@@ -45,8 +52,8 @@ var router = new VueRouter({
 			component : httpVueLoader('components/user/join.vue')
 		},
 		{
-			path : '/user_modify',
-			component : httpVueLoader('components/user/user_modify.vue')
+			path : '/modify_user',
+			component : httpVueLoader('components/user/modify_user.vue')
 		},
 		{
 			path : '/logout',

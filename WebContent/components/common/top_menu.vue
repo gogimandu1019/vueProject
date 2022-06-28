@@ -1,7 +1,7 @@
 <template>
 <!-- 상단 메뉴 부분 -->
 <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top shadow-lg">
-	<router-link to='/' class="navbar-brand">SoftCampus</router-link>
+	<router-link to='/' class="navbar-brand">gogimandu world</router-link>
 	<button class="navbar-toggler" type="button" data-toggle="collapse"
 	        data-target="#navMenu">
 		<span class="navbar-toggler-icon"></span>        
@@ -9,7 +9,7 @@
 	<div class="collapse navbar-collapse" id="navMenu">
 		<ul class="navbar-nav">
 			<li class="nav-item" v-for='obj in server_data'>
-				<router-link :to="'/board_main/' + obj.board_info_idx" class="nav-link">{{obj.board_info_name}}</router-link>
+				<router-link :to="'/board_main/' + obj.board_info_idx + '/1'" class="nav-link">{{obj.board_info_name}}</router-link>
 			</li>
 		</ul>
 		

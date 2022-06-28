@@ -14,11 +14,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for='a1 in temp_list' @click='go_board_read'>
-						<td class="text-center d-none d-md-table-cell">{{a1}}</td>
-						<td>글 제목 입니다</td>
-						<td class="text-center d-none d-md-table-cell">홍길동</td>
-						<td class="text-center d-none d-md-table-cell">2018-12-12</td>
+					<tr v-for='obj in server_data.board_list'>
+						<td class="text-center d-none d-md-table-cell">{{obj.content_idx}}</td>
+						<td  @click='go_board_read(obj.content_idx)'>{{obj.content_subject}}</td>
+						<td class="text-center d-none d-md-table-cell">{{obj.content_writer_name}}</td>
+						<td class="text-center d-none d-md-table-cell">{{obj.content_date}}</td>
 						
 					</tr>
 					
@@ -28,24 +28,13 @@
 			<div class="d-none d-md-block">
 				<ul class="pagination justify-content-center">
 					<li class="page-item">
-						<router-link to='/board_main' class="page-link">이전</router-link>
+						<router-link :to="'/board_main/' + $route.params.board_idx + '/' + server_data.pre" class="page-link">이전</router-link>
 					</li>
-					<li class="page-item" v-for='a1 in temp_list'>
-						<router-link to='/board_main' class="page-link">{{a1}}</router-link>
-					</li>
-					<li class="page-item">
-						<router-link to='/board_main' class="page-link">다음</router-link>
-					</li>
-				</ul>
-			</div>
-			
-			<div class="d-block d-md-none">
-				<ul class="pagination justify-content-center">
-					<li class="page-item">
-						<router-link to='/board_main' class="page-link">이전</router-link>
+					<li class="page-item" v-for='a1 in server_data.page_array'>
+						<router-link :to="'/board_main/' + $route.params.board_idx + '/' + a1" class="page-link">{{a1}}</router-link>
 					</li>
 					<li class="page-item">
-						<router-link to='/board_main' class="page-link">다음</router-link>
+						<router-link :to="'/board_main/' + $route.params.board_idx + '/' + server_data.next" class="page-link">다음</router-link>
 					</li>
 				</ul>
 			</div>
@@ -72,12 +61,13 @@
 			}
 		}, 
 		methods : {
-			go_board_read : function(){
-				this.$router.push('/board_read')
+			go_board_read : function(content_idx){
+				this.$router.push('/board_read/' + this.$route.params.board_idx + '/' + this.$route.params.page + '/' + content_idx)
 			},
 			get_board_data : function(){
 				var params = new URLSearchParams()
 				params.append('board_idx', this.$route.params.board_idx)
+				params.append('page', this.$route.params.page)
 				
 				axios.post('server/board/get_board_list.jsp', params).then((response) => {
 					this.server_data = response.data
